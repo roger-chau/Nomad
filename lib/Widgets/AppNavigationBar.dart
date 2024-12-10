@@ -19,7 +19,7 @@ class _AppState extends State<AppNavigationBar> {
                 pageIndex = index;
               });
             },
-            indicatorColor: Colors.amber,
+            indicatorColor: Colors.blue,
             selectedIndex: pageIndex,
             destinations: const <Widget>[
           NavigationDestination(
@@ -27,8 +27,8 @@ class _AppState extends State<AppNavigationBar> {
               icon: Icon(Icons.wallet_outlined),
               label: "Budget"),
           NavigationDestination(
-              selectedIcon: Icon(Icons.food_bank_outlined),
-              icon: Icon(Icons.food_bank),
+              selectedIcon: Icon(Icons.account_balance_outlined),
+              icon: Icon(Icons.account_balance),
               label: "Accounts")
         ]));
   }
