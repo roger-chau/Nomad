@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'Widgets/AppNavigationBar.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Welcome to Flutter',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: const Text('Welcome to Flutter'),
-        ),
-        body: const Center(
-          child: const Text('Hello World'),
-        ),
-      ),
+    return MaterialApp(
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.lightBlueAccent, brightness: Brightness.dark)),
+      home: const AppNavigationBar(),
     );
   }
 }
