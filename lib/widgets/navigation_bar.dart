@@ -12,7 +12,7 @@ class AppNavigationBar extends StatefulWidget {
 class _AppState extends State<AppNavigationBar> {
   int pageIndex = 0;
 
-  final List<Widget> _pages = [BudgetsView(), AccountsView()];
+  final List<Widget> _pages = [const BudgetsView(), const AccountsView()];
 
   @override
   Widget build(BuildContext context) {
