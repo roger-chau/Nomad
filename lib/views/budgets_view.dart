@@ -14,10 +14,10 @@ class _BudgetViewState extends State<BudgetsView> {
         appBar: AppBar(
             title: const Text("Budgets"),
             backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
-        body: Center(
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Text("Budget View"),
             ],
           ),

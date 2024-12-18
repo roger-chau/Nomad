@@ -14,10 +14,10 @@ class _AccountsViewState extends State<AccountsView> {
         appBar: AppBar(
             title: const Text("Accounts"),
             backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
-        body: Center(
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Text("Accounts View"),
             ],
           ),
