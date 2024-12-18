@@ -1,7 +1,7 @@
 class Budget {
-  String name;
-  double liquidBalance;
-  double assignedBalance;
+  String _name;
+  double _liquidBalance;
+  double _assignedBalance;
 
-  Budget(this.name, this.liquidBalance, this.assignedBalance);
+  Budget(this._name, this._liquidBalance, this._assignedBalance);
 }
