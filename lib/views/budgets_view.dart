@@ -12,8 +12,8 @@ class _BudgetViewState extends State<BudgetsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Budget"),
-        ),
+            title: const Text("Budgets"),
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

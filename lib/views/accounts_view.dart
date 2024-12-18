@@ -12,8 +12,8 @@ class _AccountsViewState extends State<AccountsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Accounts"),
-        ),
+            title: const Text("Accounts"),
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
