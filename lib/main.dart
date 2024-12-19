@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           useMaterial3: true,
+          dividerColor: Colors.transparent,
           colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.lightBlueAccent, brightness: Brightness.dark)),
       home: const AppNavigationBar(),
