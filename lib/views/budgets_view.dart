@@ -16,27 +16,20 @@ class _BudgetViewState extends State<BudgetsView> {
             title: const Text("Budgets"),
             backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
         body: const SingleChildScrollView(
+            padding: EdgeInsets.only(top: 30),
             child: Column(children: <Widget>[
-          BudgetWidget(
-              title: "Groceries",
-              amount: 100.0,
-              spent: 50.0,
-              color: Colors.green),
-          BudgetWidget(
-              title: "Entertainment",
-              amount: 200.0,
-              spent: 150.0,
-              color: Colors.blue),
-          BudgetWidget(
-              title: "Transportation",
-              amount: 150.0,
-              spent: 100.0,
-              color: Colors.red),
-          BudgetWidget(
-              title: "Rent",
-              amount: 1000.0,
-              spent: 1000.0,
-              color: Colors.purple),
-        ])));
+              BudgetWidget(title: "Groceries", amount: 100.0, spent: 50.0),
+              BudgetWidget(title: "Entertainment", amount: 200.0, spent: 150.0),
+              BudgetWidget(
+                title: "Transportation",
+                amount: 150.0,
+                spent: 100.0,
+              ),
+              BudgetWidget(
+                title: "Rent",
+                amount: 1000.0,
+                spent: 1000.0,
+              ),
+            ])));
   }
 }

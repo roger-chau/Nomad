@@ -5,13 +5,11 @@ class BudgetWidget extends StatefulWidget {
       {super.key,
       required this.title,
       required this.amount,
-      required this.spent,
-      required this.color});
+      required this.spent});
 
   final String title;
   final double amount;
   final double spent;
-  final Color color;
 
   @override
   State<BudgetWidget> createState() => _BudgetWidgetState();
@@ -21,7 +19,7 @@ class _BudgetWidgetState extends State<BudgetWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: widget.color,
+        color: Theme.of(context).colorScheme.surfaceContainer,
         child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
