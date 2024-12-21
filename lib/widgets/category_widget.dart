@@ -45,14 +45,36 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: budgets.length,
+                proxyDecorator:
+                    (Widget child, int index, Animation<double> animation) {
+                  return AnimatedBuilder(
+                    animation: animation,
+                    builder: (BuildContext context, Widget? child) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.5),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: child,
+                      );
+                    },
+                    child: child,
+                  );
+                },
                 itemBuilder: (BuildContext context, int index) {
-                  return ReorderableDragStartListener(
-                      index: index,
+                  return ReorderableDelayedDragStartListener(
+                    index: index,
+                    key: ValueKey(index),
+                    child: Container(
                       key: ValueKey(index),
-                      child: Container(
-                          key: ValueKey(index),
-                          color: Theme.of(context).colorScheme.surfaceDim,
-                          child: budgets[index]));
+                      child: budgets[index],
+                    ),
+                  );
                 },
                 onReorder: (int oldIndex, int newIndex) {
                   setState(() {
