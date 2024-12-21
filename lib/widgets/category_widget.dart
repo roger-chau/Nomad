@@ -19,6 +19,14 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
+  late List<BudgetWidget> budgets;
+
+  @override
+  void initState() {
+    super.initState();
+    budgets = List<BudgetWidget>.from(widget.budgets);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -32,9 +40,30 @@ class _CategoryWidgetState extends State<CategoryWidget> {
             "Available: ${widget.available.toString()} Assigned: ${widget.assigned.toString()}"),
         children: <Widget>[
           Container(
-              color: Theme.of(context).colorScheme.surfaceDim,
-              child:
-                  Column(children: [for (var budget in widget.budgets) budget]))
+            color: Theme.of(context).colorScheme.surfaceDim, // Or Colors.white
+            child: ReorderableListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: budgets.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ReorderableDragStartListener(
+                      index: index,
+                      key: ValueKey(index),
+                      child: Container(
+                          key: ValueKey(index),
+                          color: Theme.of(context).colorScheme.surfaceDim,
+                          child: budgets[index]));
+                },
+                onReorder: (int oldIndex, int newIndex) {
+                  setState(() {
+                    if (oldIndex < newIndex) {
+                      newIndex -= 1;
+                    }
+                    final BudgetWidget item = budgets.removeAt(oldIndex);
+                    budgets.insert(newIndex, item);
+                  });
+                }),
+          )
         ]);
   }
 }
