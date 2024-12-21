@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'budget_widget.dart';
+import 'package:flutter/services.dart';
 
 class CategoryWidget extends StatefulWidget {
   final String name;
@@ -75,6 +76,11 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                       child: budgets[index],
                     ),
                   );
+                },
+                onReorderStart: (index) {
+                  setState(() {
+                    HapticFeedback.mediumImpact();
+                  });
                 },
                 onReorder: (int oldIndex, int newIndex) {
                   setState(() {
