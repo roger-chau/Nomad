@@ -23,9 +23,18 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   Widget build(BuildContext context) {
     return ExpansionTile(
         initiallyExpanded: true,
+        collapsedBackgroundColor: Colors.black,
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(side: BorderSide.none),
+        collapsedShape: RoundedRectangleBorder(side: BorderSide.none),
         title: Text(widget.name),
         subtitle: Text(
             "Available: ${widget.available.toString()} Assigned: ${widget.assigned.toString()}"),
-        children: <Widget>[for (var budget in widget.budgets) budget]);
+        children: <Widget>[
+          Container(
+              color: Theme.of(context).colorScheme.surfaceDim,
+              child:
+                  Column(children: [for (var budget in widget.budgets) budget]))
+        ]);
   }
 }
