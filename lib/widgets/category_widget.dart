@@ -22,7 +22,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-        trailing: const SizedBox(),
+        initiallyExpanded: true,
         title: Text(widget.name),
         subtitle: Text(
             "Available: ${widget.available.toString()} Assigned: ${widget.assigned.toString()}"),

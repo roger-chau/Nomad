@@ -23,8 +23,9 @@ class _BudgetViewState extends State<BudgetsView> {
               available: 50.0,
               assigned: 25.0,
               budgets: <BudgetWidget>[
-                BudgetWidget(title: "Gas", amount: 25.0, spent: 12.5),
-                BudgetWidget(title: "Public Transit", amount: 25.0, spent: 12.5)
+                BudgetWidget(title: "Gas", available: 25.0, assigned: 12.5),
+                BudgetWidget(
+                    title: "Public Transit", available: 25.0, assigned: 12.5)
               ])
         ])));
   }
