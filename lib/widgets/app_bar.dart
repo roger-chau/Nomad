@@ -25,26 +25,29 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           IconButton(
               icon: const Icon(Icons.plus_one),
               onPressed: () {
-                Scaffold.of(context).showBottomSheet((BuildContext context) {
-                  return Container(
-                    height: 200,
-                    color: Colors.amber,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text('BottomSheet'),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Close'),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                });
+                showModalBottomSheet(
+                    context: context,
+                    useRootNavigator: true,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        color: Theme.of(context).colorScheme.surfaceContainer,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Text('BottomSheet'),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Close'),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
               })
         ]);
   }
