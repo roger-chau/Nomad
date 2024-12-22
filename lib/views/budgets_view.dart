@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:budgeting_app/widgets/budget_widget.dart';
 import 'package:budgeting_app/widgets/category_widget.dart';
+import 'package:budgeting_app/widgets/app_bar.dart';
 
 class BudgetsView extends StatefulWidget {
   const BudgetsView({super.key});
@@ -13,9 +14,7 @@ class _BudgetViewState extends State<BudgetsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text("Budgets"),
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
+        appBar: AppBarWidget(title: "Budgets"),
         body: const SingleChildScrollView(
             child: Column(children: [
           CategoryWidget(
