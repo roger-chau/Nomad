@@ -7,7 +7,7 @@ class Transactions {
   late String _memo;
   late bool _cleared;
   late Accounts _account;
-  //late Catagory budget;
+  //late Budget _budget;
   late String _payees;
 
   //constructor
@@ -37,5 +37,29 @@ class Transactions {
 
   String getPayee() {
     return _payees;
+  }
+
+  void setDate(DateTime date) {
+    _date = date;
+  }
+
+  void setAmount(double amount) {
+    _amount = amount;
+  }
+
+  void setMemo(String memo) {
+    _memo = memo;
+  }
+
+  void setCleared(bool cleared) {
+    _cleared = cleared;
+  }
+
+  void setAccount(Accounts account) {
+    _account = account;
+  }
+
+  void setPayee(String payee) {
+    _payees = payee;
   }
 }
