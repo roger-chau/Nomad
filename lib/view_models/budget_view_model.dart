@@ -6,7 +6,8 @@ class BudgetViewModel extends ChangeNotifier {
 
   List<BudgetModel> get allBudgets => _budgetModel;
 
-  void addBudget(BudgetModel budget) {
+  void addBudget(String budgetName) {
+    BudgetModel budget = BudgetModel(budgetName, 0, 0);
     _budgetModel.add(budget);
     notifyListeners();
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:budgeting_app/view_models/budget_view_model.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   const AppBarWidget({
@@ -29,11 +31,14 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     context: context,
                     useRootNavigator: true,
                     builder: (BuildContext context) {
+                      final TextEditingController controller =
+                          TextEditingController();
+
                       return Container(
                         height: MediaQuery.of(context).size.height * 0.5,
                         color: Theme.of(context).colorScheme.surfaceContainer,
                         child: Stack(children: <Widget>[
-                          const Center(
+                          Center(
                               child: Padding(
                                   padding: EdgeInsets.all(16),
                                   child: Row(children: [
@@ -42,6 +47,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                         child: Padding(
                                             padding: EdgeInsets.only(left: 8),
                                             child: TextField(
+                                                controller: controller,
                                                 decoration: InputDecoration(
                                                     hintText:
                                                         "Enter Budget Name",
@@ -51,11 +57,15 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           Positioned(
                               bottom: 50,
                               right: 25,
-                              child: FloatingActionButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Icon(Icons.save)))
+                              child: Consumer<BudgetViewModel>(
+                                  builder: (context, budget, child) {
+                                return FloatingActionButton(
+                                    onPressed: () {
+                                      budget.addBudget(controller.text);
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Add Budget"));
+                              }))
                         ]),
                       );
                     });

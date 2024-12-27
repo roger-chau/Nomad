@@ -21,18 +21,19 @@ class _BudgetViewState extends State<BudgetsView> {
         child: Consumer<BudgetViewModel>(
           builder: (context, budget, child) {
             return Column(
+              key: ValueKey(budget.allBudgets.length),
               children: [
                 CategoryWidget(
-                  name: "Transportation",
-                  available: 50.0,
-                  assigned: 25.0,
-                  budgets: List.generate(
-                      budget.allBudgets.length,
-                      (index) => BudgetWidget(
-                          title: budget.allBudgets[index].name,
-                          assigned: budget.allBudgets[index].assignedBalance,
-                          available: budget.allBudgets[index].liquidBalance)),
-                ),
+                    name: "Transportation",
+                    available: 50.0,
+                    assigned: 25.0,
+                    budgets: [
+                      for (var budget in budget.allBudgets)
+                        BudgetWidget(
+                            title: budget.name,
+                            assigned: budget.assignedBalance,
+                            available: budget.liquidBalance)
+                    ]),
               ],
             );
           },

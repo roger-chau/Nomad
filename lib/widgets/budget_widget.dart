@@ -60,7 +60,9 @@ class _BudgetWidgetState extends State<BudgetWidget> {
                       width: double.infinity,
                       child: LinearProgressIndicator(
                           color: Colors.green,
-                          value: widget.assigned / widget.available)),
+                          value: widget.available > 0
+                              ? widget.assigned / widget.available
+                              : 0)),
                 ),
               ],
             )));
