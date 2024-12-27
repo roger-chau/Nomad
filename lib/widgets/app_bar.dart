@@ -61,7 +61,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                   builder: (context, budget, child) {
                                 return FloatingActionButton(
                                     onPressed: () {
-                                      budget.addBudget(controller.text);
+                                      budget.addCategory(controller.text);
                                       Navigator.pop(context);
                                     },
                                     child: const Text("Add Budget"));
