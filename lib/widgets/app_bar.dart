@@ -32,20 +32,20 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                       return Container(
                         height: MediaQuery.of(context).size.height * 0.5,
                         color: Theme.of(context).colorScheme.surfaceContainer,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text('BottomSheet'),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Close'),
-                              )
-                            ],
-                          ),
-                        ),
+                        child: Stack(children: <Widget>[
+                          const Center(
+                              child: Padding(
+                                  padding: EdgeInsets.all(16),
+                                  child: TextField())),
+                          Positioned(
+                              bottom: 50,
+                              right: 25,
+                              child: FloatingActionButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.save)))
+                        ]),
                       );
                     });
               })
