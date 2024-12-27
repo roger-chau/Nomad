@@ -36,7 +36,18 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           const Center(
                               child: Padding(
                                   padding: EdgeInsets.all(16),
-                                  child: TextField())),
+                                  child: Row(children: [
+                                    Icon(Icons.add),
+                                    Expanded(
+                                        child: Padding(
+                                            padding: EdgeInsets.only(left: 8),
+                                            child: TextField(
+                                                decoration: InputDecoration(
+                                                    hintText:
+                                                        "Enter Budget Name",
+                                                    border:
+                                                        OutlineInputBorder()))))
+                                  ]))),
                           Positioned(
                               bottom: 50,
                               right: 25,
