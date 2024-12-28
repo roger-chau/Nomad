@@ -31,24 +31,21 @@ class _TransactionViewState extends State<TransactionView> {
             itemCount: transactions.length,
             itemBuilder: (context, index) {
               return Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(
-                      left: 20, right: 20, top: 10, bottom: 0),
+                  alignment: Alignment.topLeft,
                   height: 120,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.blueAccent,
+                      color: Colors.white10,
                       style: BorderStyle.solid,
                       width: 1,
                     ),
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(35),
+                    color: Colors.black,
                   ),
                   child: Text(
-                    "    Date: ${transactions[index].getDate().year}-${transactions[index].getDate().month}-${transactions[index].getDate().day}\n"
-                    "    Amount: \$${transactions[index].getAmount()}\n"
-                    "    Memo: ${transactions[index].getMemo()}\n"
-                    "    Payee: ${transactions[index].getPayee()}",
+                    "Date: ${transactions[index].getDate().year}-${transactions[index].getDate().month}-${transactions[index].getDate().day}\n"
+                    "Amount: \$${transactions[index].getAmount()}\n"
+                    "Memo: ${transactions[index].getMemo()}\n"
+                    "Payee: ${transactions[index].getPayee()}",
                     style: const TextStyle(fontSize: 20),
                   ));
             }));
