@@ -21,7 +21,8 @@ class _BudgetViewState extends State<BudgetsView> {
         child: Consumer<BudgetViewModel>(
           builder: (context, budget, child) {
             return Column(
-              key: ValueKey(budget.allCategories.length),
+              key: ValueKey(
+                  '${budget.allCategories.length}-${budget.allCategories.map((c) => c.budgets.length).join("-")}'),
               children: [
                 for (var category in budget.allCategories)
                   CategoryWidget(

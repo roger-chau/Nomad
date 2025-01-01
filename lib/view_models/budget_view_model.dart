@@ -8,10 +8,16 @@ class BudgetViewModel extends ChangeNotifier {
 
   List<CategoryModel> get allCategories => _categoryModels;
 
-  void addBudget(String budgetName) {
+  void addBudget(String budgetName, String? categoryName) {
     // FIX ME, MOVE TO SERVICE
-    BudgetModel budget = BudgetModel(budgetName, 0, 0);
+    BudgetModel budget = BudgetModel(budgetName, categoryName, 0, 0);
     _budgetModels.add(budget);
+
+    _categoryModels
+        .firstWhere((category) => category.name == categoryName)
+        .budgets
+        .add(budget);
+
     notifyListeners();
   }
 

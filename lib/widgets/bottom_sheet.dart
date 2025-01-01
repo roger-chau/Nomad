@@ -16,7 +16,9 @@ class BottomSheetWidget extends StatefulWidget {
 
 class CreateBottomSheetState extends State<BottomSheetWidget> {
   final List<bool> _selectedCreation = [true, false];
-  final TextEditingController controller = TextEditingController();
+  String? selectedCategory;
+
+  final TextEditingController nameController = TextEditingController();
 
   Widget _buildCategoryView() {
     return Center(
@@ -25,7 +27,7 @@ class CreateBottomSheetState extends State<BottomSheetWidget> {
             child: SizedBox(
                 width: 280,
                 child: TextField(
-                  controller: controller,
+                  controller: nameController,
                   decoration: const InputDecoration(
                       labelText: "Category Name", border: OutlineInputBorder()),
                 ))));
@@ -39,17 +41,34 @@ class CreateBottomSheetState extends State<BottomSheetWidget> {
             child: SizedBox(
                 width: 280,
                 child: TextField(
-                  controller: controller,
+                  controller: nameController,
                   decoration: const InputDecoration(
                       labelText: "Budget Name", border: OutlineInputBorder()),
                 ))),
         SizedBox(
-            width: 280,
-            child: TextField(
-              controller: controller,
+          width: 280,
+          child: Consumer<BudgetViewModel>(builder: (context, budget, child) {
+            return DropdownButtonFormField<String>(
+              value: selectedCategory,
               decoration: const InputDecoration(
-                  labelText: "Category", border: OutlineInputBorder()),
-            ))
+                labelText: "Category",
+                border: OutlineInputBorder(),
+              ),
+              items: budget.allCategories
+                  .map<DropdownMenuItem<String>>((category) {
+                return DropdownMenuItem<String>(
+                  value: category.name,
+                  child: Text(category.name),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedCategory = newValue;
+                });
+              },
+            );
+          }),
+        )
       ]),
     );
   }
@@ -88,7 +107,10 @@ class CreateBottomSheetState extends State<BottomSheetWidget> {
             child: Consumer<BudgetViewModel>(builder: (context, budget, child) {
               return FloatingActionButton(
                   onPressed: () {
-                    budget.addCategory(controller.text);
+                    _selectedCreation[0]
+                        ? budget.addCategory(nameController.text)
+                        : budget.addBudget(
+                            nameController.text, selectedCategory ?? "");
                     Navigator.pop(context);
                   },
                   child: const Text("Add"));
