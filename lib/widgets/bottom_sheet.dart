@@ -22,22 +22,36 @@ class CreateBottomSheetState extends State<BottomSheetWidget> {
     return Center(
         child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                  labelText: "Category Name", border: OutlineInputBorder()),
-            )));
+            child: SizedBox(
+                width: 280,
+                child: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                      labelText: "Category Name", border: OutlineInputBorder()),
+                ))));
   }
 
   Widget _buildBudgetView() {
     return Center(
-        child: Padding(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Padding(
             padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+                width: 280,
+                child: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                      labelText: "Budget Name", border: OutlineInputBorder()),
+                ))),
+        SizedBox(
+            width: 280,
             child: TextField(
               controller: controller,
               decoration: const InputDecoration(
-                  labelText: "Budget Name", border: OutlineInputBorder()),
-            )));
+                  labelText: "Category", border: OutlineInputBorder()),
+            ))
+      ]),
+    );
   }
 
   @override
