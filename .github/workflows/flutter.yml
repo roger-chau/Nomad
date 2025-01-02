@@ -1,28 +1,34 @@
-name: Flutter CI/CD
+name: Flutter Unit Tests
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # Step 1: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2.14.0
         with:
           flutter-version: stable
           channel: stable
           cache: true
-          cache-key: flutter-${{ runner.os }}-${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
-          pub-cache-key: flutter-pub-${{ runner.os }}-${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
-          cache-path: ${{ runner.tool_cache }}/flutter/${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
-          pub-cache-path: ~/.pub-cache
-          architecture: x64
 
-      - name: Flutter doctor
-        run: flutter doctor
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Step 4: Run unit tests
+      - name: Run Flutter tests
+        run: flutter test
