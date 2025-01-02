@@ -13,17 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Step 2: Set up Flutter
+      - name: Clone repository
+        uses: actions/checkout@v4
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2.14.0
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
           channel: stable
-          cache: true
+          flutter-version-file: pubspec.yaml # path to pubspec.yaml
+      - run: flutter --version
 
       # Step 3: Install dependencies
       - name: Install dependencies
