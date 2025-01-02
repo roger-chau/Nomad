@@ -1,3 +1,28 @@
-              - name: Flutter action
-                uses: subosito/flutter-action@v2.18.0
-            
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2.14.0
+        with:
+          flutter-version: stable
+          channel: stable
+          cache: true
+          cache-key: flutter-${{ runner.os }}-${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
+          pub-cache-key: flutter-pub-${{ runner.os }}-${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
+          cache-path: ${{ runner.tool_cache }}/flutter/${{ channel }}-${{ flutter-version }}-${{ runner.arch }}
+          pub-cache-path: ~/.pub-cache
+          architecture: x64
+
+      - name: Flutter doctor
+        run: flutter doctor
