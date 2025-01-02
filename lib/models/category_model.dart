@@ -12,4 +12,8 @@ class CategoryModel {
   double get assignedBalance => _assignedBalance;
   double get liquidBalance => _liquidBalance;
   List<BudgetModel> get budgets => _budgetModel;
+
+  void addBudget(BudgetModel budget) {
+    _budgetModel.add(budget);
+  }
 }
