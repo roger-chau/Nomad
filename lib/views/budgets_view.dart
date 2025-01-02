@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:budgeting_app/view_models/budget_view_model.dart';
+import 'package:budgeting_app/widgets/budget_widget.dart';
+import 'package:budgeting_app/widgets/category_widget.dart';
+import 'package:budgeting_app/widgets/app_bar.dart';
 
 class BudgetsView extends StatefulWidget {
   const BudgetsView({super.key});
@@ -11,16 +16,31 @@ class _BudgetViewState extends State<BudgetsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text("Budgets"),
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainer),
-        body: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Budget View"),
-            ],
-          ),
-        ));
+      appBar: AppBarWidget(title: "Budgets"),
+      body: SingleChildScrollView(
+        child: Consumer<BudgetViewModel>(
+          builder: (context, budget, child) {
+            return Column(
+              key: ValueKey(
+                  '${budget.allCategories.length}-${budget.allCategories.map((c) => c.budgets.length).join("-")}'),
+              children: [
+                for (var category in budget.allCategories)
+                  CategoryWidget(
+                      name: category.name,
+                      available: category.liquidBalance,
+                      assigned: category.assignedBalance,
+                      budgets: [
+                        for (var budget in category.budgets)
+                          BudgetWidget(
+                              title: budget.name,
+                              assigned: budget.assignedBalance,
+                              available: budget.liquidBalance)
+                      ]),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
